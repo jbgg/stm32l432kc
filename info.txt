@@ -1,0 +1,42 @@
+
+Device: NUCLEO-L432KC
+Goal: blinking the led of this device.
+
+
+[UM1956, 6.5 LEDs]
+User LD3:
+connected to Arduino signal D13
+STM32 I/O PB3 (pin 26)
+ - HIGH: led on
+ - LOW: led off
+
+
+[RM0394, 6.2.18 Peripheral clock enable register]
+
+
+GPIOB base addr: 0x48000400
+
+GPIOB3: configuration
+    00 moder: 1 (output mode)
+    04 otyper: 0 (output push-pull)
+    08 ospeedr: 3 (very high speed)
+    0c pupdr: 1 (pull-up)
+
+
+TODO:
+    - fill .bss section 
+    
+
+
+jumper d2:
+STM32 I/O PA12
+
+GPIOA base addr: 0x48000000
+
+GPIOA12: configuration
+    00 moder: 0 (input mode)
+    04 otyper: x
+    08 ospeedr: x
+    0c pupdr: 0 (floating)
+
+
