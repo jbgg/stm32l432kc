@@ -22,32 +22,31 @@ _start:
 
     bl usart1_config
 
-    ldr r0, ='h'
-    bl usart1_putc
+    bl adc_config
 
-    ldr r0, ='o'
-    bl usart1_putc
-
-    ldr r0, ='l'
-    bl usart1_putc
-
-    ldr r0, ='a'
-    bl usart1_putc
-
-1:
-
-    bl usart1_getc
+    bl adc_start
     
+    tst r0, #1
+    bne blink
+    
+
+    bl adc_read
+
+
+    bl led3_on
+    
+
+halt:
+    wfi
+    b halt
+
+blink:
     bl led3_on
     ldr r0, =1000
     bl delay
     bl led3_off
-
-    b 1b
-
+    ldr r0, =1000
+    bl delay
+    b blink
     
-
-1:
-    wfi
-    b 1b
 
